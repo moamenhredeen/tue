@@ -1,14 +1,13 @@
-import { IssueService } from "./issue.service";
 import { CreateIssueRequest, CreateIssueStatusRequest } from "api-spec/src/issue.types";
 import { Issue, IssueStatus, IssueStatusGroup } from "./issue.models";
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
+import { createIssue, createStatus, getIssues, getStatuses } from "./issue.service";
 
 
 export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
-    const issueService = new IssueService();
 
     app.get("/status", async (req: FastifyRequest, res: FastifyReply) => {
-        const issueStatuses = await issueService.getStatuses();
+        const issueStatuses = await getStatuses();
         return issueStatuses;
     });
 
@@ -19,10 +18,15 @@ export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
         newIssueStatus.name = issueStatus.name;
         newIssueStatus.description = issueStatus.description;
         newIssueStatus.group = issueStatus.group as IssueStatusGroup;
-        const createdIssueStatus = await issueService.createStatus(newIssueStatus);
+        const createdIssueStatus = await createStatus(newIssueStatus);
         return createdIssueStatus;
     });
 
+
+    app.get("/", async (req: FastifyRequest, res: FastifyReply) => {
+        const issues = await getIssues();
+        return issues;
+    });
 
     app.post("/", async (req: FastifyRequest, res: FastifyReply) => {
         const issue = req.body as CreateIssueRequest;
@@ -30,14 +34,7 @@ export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
         newIssue.title = issue.title;
         newIssue.description = issue.description;
         newIssue.status_id = issue.status_id;
-        const createdIssue = await issueService.createIssue(newIssue);
+        const createdIssue = await createIssue(newIssue);
         return createdIssue;
     });
-
-    app.get("/", async (req: FastifyRequest, res: FastifyReply) => {
-        const issues = await issueService.getIssues();
-        return issues;
-    });
-
-
 }
