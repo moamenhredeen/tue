@@ -12,6 +12,7 @@
   "packageManager": "pnpm@10.7.1",
   "dependencies": {
     "@fastify/autoload": "^6.3.0",
+    "@fastify/cors": "^11.0.1",
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
     "api-spec": "workspace:*",

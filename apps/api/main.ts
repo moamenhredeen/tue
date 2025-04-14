@@ -2,6 +2,7 @@
 import fastify from "fastify";
 import { AppDataSource } from "./data-source";
 import fastifyAutoload from "@fastify/autoload";
+import fastifyCors from "@fastify/cors";
 import path from "path";
 
 async function main() {
@@ -12,6 +13,8 @@ async function main() {
     const app = fastify({
         logger: true
     });
+    
+    app.register(fastifyCors, {});
 
     app.register(fastifyAutoload, {
         dir: path.join(__dirname, "features"),
