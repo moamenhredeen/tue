@@ -1,6 +1,11 @@
 
+.container {
+    padding: 3rem;
+}
+
 .issue-action-container {
     display: flex;
-    justify-content: flex-end;
-    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }

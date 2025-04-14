@@ -1,5 +1,15 @@
-
 <div class="issue-action-container">
-    <button mat-raised-button color="primary" (click)="openCreateIssueDialog()">Create Issue</button>
+    <h1>Issues</h1>
+
+    <div class="issue-action-container">
+        <mat-button-toggle-group multiple [formControl]="selectedStatusGroup" name="statusGroup"
+            aria-label="Status Group">
+            <mat-button-toggle value="OPEN">Open</mat-button-toggle>
+            <mat-button-toggle value="IN_PROGRESS">In Progress</mat-button-toggle>
+            <mat-button-toggle value="CLOSED">Closed</mat-button-toggle>
+        </mat-button-toggle-group>
+        <button mat-button color="primary" (click)="openCreateIssueDialog()">Create Issue</button>
+    </div>
 </div>
+
 <app-issue-list></app-issue-list>

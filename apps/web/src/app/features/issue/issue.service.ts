@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, OnInit } from "@angular/core";
-import { CreateIssueRequest, IssueResponse, IssueStatusResponse } from "api-spec/src/issue.types";
+import { CreateIssueRequest, IssueResponse, IssueStatusGroup, IssueStatusResponse } from "api-spec/src/issue.types";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, Observable, tap } from "rxjs";
 
@@ -36,6 +36,13 @@ export class IssueService implements OnInit {
 
     getIssues(): Observable<IssueResponse[]> {
         return this.http.get<IssueResponse[]>(`${IssueService.issueRoute}`)
+        .pipe(
+            tap((issues) => this.issueSubject.next(issues))
+        );
+    }
+    
+    filterIssuesByStatusGroup(statusGroups: IssueStatusGroup[]): Observable<IssueResponse[]> {
+        return this.http.get<IssueResponse[]>(`${IssueService.issueRoute}?${statusGroups.map(statusGroup => `statusGroup=${statusGroup}`).join('&')}`)
         .pipe(
             tap((issues) => this.issueSubject.next(issues))
         );
