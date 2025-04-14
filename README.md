@@ -26,3 +26,4 @@ root
 - try other rest frameworks
   - fastify: faster, has more features (open api)
 - extract the services to a seperate package
+- try nextjs and compare it to angular
