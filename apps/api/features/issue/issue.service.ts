@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { Issue, IssueStatus, IssueStatusGroup } from "./issue.models";
 import { AppDataSource } from "../../data-source";
 
@@ -27,6 +27,17 @@ export const createIssue = async (issue: Issue) => {
 export const getIssues = async () => {
     return issueRepository.find({ relations: ['status'] });
 }
+
+/** 
+ * Get issues by a list of status groups
+ * @param statusGroups - The status groups
+ * @returns The issues
+ */
+export const getIssuesByStatusGroup = async (statusGroups: IssueStatusGroup[]) => {
+    console.log(statusGroups);
+    return issueRepository.find({ relations: ['status'], where: { status: { group: In(statusGroups) } } });
+}
+
 
 /**
  * Get an issue by its id

@@ -1,7 +1,7 @@
 import { CreateIssueRequest, CreateIssueStatusRequest } from "api-spec/src/issue.types";
 import { Issue, IssueStatus, IssueStatusGroup } from "./issue.models";
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
-import { createIssue, createStatus, getIssues, getStatuses } from "./issue.service";
+import { createIssue, createStatus, getIssues, getIssuesByStatusGroup, getStatuses } from "./issue.service";
 
 
 export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
@@ -23,9 +23,15 @@ export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
     });
 
 
-    app.get("/", async (req: FastifyRequest, res: FastifyReply) => {
-        const issues = await getIssues();
-        return issues;
+    app.get("/", async (req: FastifyRequest<{ Querystring: { statusGroup: IssueStatusGroup[] } }>, res: FastifyReply) => {
+        if (!req.query.statusGroup) {
+            const issues = await getIssues();
+            return issues;
+        } else {
+            const statusGroups = Array.isArray(req.query.statusGroup) ? req.query.statusGroup : [req.query.statusGroup];
+            const issues = await getIssuesByStatusGroup(statusGroups);
+            return issues;
+        }
     });
 
     app.post("/", async (req: FastifyRequest, res: FastifyReply) => {
