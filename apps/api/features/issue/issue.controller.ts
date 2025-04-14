@@ -1,68 +1,43 @@
-import { Router } from "express";
 import { IssueService } from "./issue.service";
-import { CreateIssueRequest, CreateIssueStatusRequest, IssueResponse } from "api-spec/src/issue.types";
-import { Issue } from "./issue.models";
+import { CreateIssueRequest, CreateIssueStatusRequest } from "api-spec/src/issue.types";
+import { Issue, IssueStatus, IssueStatusGroup } from "./issue.models";
+import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
 
 
-export class IssueController {
-    public static readonly route = "/issue";
-    private readonly issueService: IssueService;
+export default async  (app: FastifyInstance, options: FastifyPluginOptions) => {
+    const issueService = new IssueService();
 
-    constructor() {
-        this.issueService = new IssueService();
-    }
-    
-    get router() {
-        const router = Router();
+    app.get("/status", async (req: FastifyRequest, res: FastifyReply) => {
+        const issueStatuses = await issueService.getStatuses();
+        return issueStatuses;
+    });
 
-        router.get("/status", this.getStatuses.bind(this));
-        router.post("/status", this.createStatus.bind(this));
-        router.post("/", this.createIssue.bind(this));
-        router.get("/", this.getIssues.bind(this));
-        return router;
-    }
 
-    async createIssue(req: any, res: any) {
+    app.post("/status", async (req: FastifyRequest, res: FastifyReply) => {
+        const issueStatus = req.body as CreateIssueStatusRequest;
+        const newIssueStatus = new IssueStatus();
+        newIssueStatus.name = issueStatus.name;
+        newIssueStatus.description = issueStatus.description;
+        newIssueStatus.group = issueStatus.group as IssueStatusGroup;
+        const createdIssueStatus = await issueService.createStatus(newIssueStatus);
+        return createdIssueStatus;
+    });
+
+
+    app.post("/", async (req: FastifyRequest, res: FastifyReply) => {
         const issue = req.body as CreateIssueRequest;
         const newIssue = new Issue();
         newIssue.title = issue.title;
         newIssue.description = issue.description;
         newIssue.status_id = issue.status_id;
-        const createdIssue = await this.issueService.createIssue(newIssue);
-        res.status(201).json(createdIssue);
-    }
+        const createdIssue = await issueService.createIssue(newIssue);
+        return createdIssue;
+    });
 
-    async getIssues(req: any, res: any) {
-        const issues = await this.issueService.getIssues();
-        const issuesResponse = issues.map((issue) => ({
-            id: issue.id,
-            title: issue.title,
-            description: issue.description,
-            status: issue.status,
-        }));
-        res.status(200).json(issuesResponse);
-    }
+    app.get("/", async (req: FastifyRequest, res: FastifyReply) => {
+        const issues = await issueService.getIssues();
+        return issues;
+    });
 
-    async getStatuses(req: any, res: any) {
-        const issueStatuses = await this.issueService.getStatuses();
-        const issueStatusesResponse = issueStatuses.map((issueStatus) => ({
-            id: issueStatus.id,
-            name: issueStatus.name,
-            description: issueStatus.description,
-            group: issueStatus.group,
-        }));
-        res.status(200).json(issueStatusesResponse);
-    }
 
-    async createStatus(req: any, res: any) {
-        const issueStatus = req.body as CreateIssueStatusRequest;
-        // const newIssueStatus = await this.issueService.createStatus(issueStatus);
-        const status = {
-            id: 1,
-            name: issueStatus.name,
-            description: issueStatus.description,
-            group: "default",
-        }
-        res.status(201).json(status);
-    }
 }
