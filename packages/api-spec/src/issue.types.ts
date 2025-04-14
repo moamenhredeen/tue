@@ -1,4 +1,4 @@
-
+export type IssueStatusGroup = 'OPEN' | 'IN_PROGRESS' | 'CLOSED';
 
 /**
  * Issue Status
