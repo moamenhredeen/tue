@@ -5,7 +5,7 @@ import { IssueInputComponent } from './issue-input/issue-input.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { IssueStatusGroup } from 'api-spec/src/issue.types';
+import { IssueStatusGroup } from '@tue/api-spec/src/issue.types';
 import { IssueService } from './issue.service';
 
 @Component({

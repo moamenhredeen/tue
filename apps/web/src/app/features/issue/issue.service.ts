@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable, OnInit } from "@angular/core";
-import { CreateIssueRequest, IssueResponse, IssueStatusGroup, IssueStatusResponse } from "api-spec/src/issue.types";
+import { CreateIssueRequest, IssueResponse, IssueStatusGroup, IssueStatusResponse } from "@tue/api-spec/src/issue.types";
 import { environment } from "../../../environments/environment";
 import { BehaviorSubject, Observable, tap } from "rxjs";
 

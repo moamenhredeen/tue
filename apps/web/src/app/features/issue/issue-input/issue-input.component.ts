@@ -8,7 +8,7 @@ import { AsyncPipe } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { CreateIssueRequest } from 'api-spec/src/issue.types';
+import { CreateIssueRequest } from '@tue/api-spec/src/issue.types';
 @Component({
   selector: 'app-issue-input',
   templateUrl: './issue-input.component.html',

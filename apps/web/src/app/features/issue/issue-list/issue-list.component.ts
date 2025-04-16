@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { IssueService } from '../issue.service';
-import { IssueResponse } from 'api-spec/src/issue.types';
+import { IssueResponse } from '@tue/api-spec/src/issue.types';
 import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
