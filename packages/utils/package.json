@@ -1,7 +1,7 @@
 {
-  "name": "@tue/api-spec",
+  "name": "@tue/utils",
   "version": "1.0.0",
-  "description": "API spec",
+  "description": "Utility functions",
   "packageManager": "pnpm@10.7.1",
   "main": "build/index.js",
   "scripts": {
