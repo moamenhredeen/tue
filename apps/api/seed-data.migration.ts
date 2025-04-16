@@ -6,9 +6,9 @@ export class SeedDataMigration1710433714100 implements MigrationInterface {
         // ------------------------------------------------------------------------------------------------
         // Seed data for issue statuses
         // ------------------------------------------------------------------------------------------------
-        await queryRunner.query(`INSERT INTO issue_statuses (name, description, \`group\`) VALUES ('Open', 'Open issue status', 'OPEN')`);
-        await queryRunner.query(`INSERT INTO issue_statuses (name, description, \`group\`) VALUES ('In Progress', 'In progress issue status', 'IN_PROGRESS')`);
-        await queryRunner.query(`INSERT INTO issue_statuses (name, description, \`group\`) VALUES ('Closed', 'Closed issue status', 'CLOSED')`);
+        await queryRunner.query(`INSERT INTO issue_statuses (name, description, "group") VALUES ('Open', 'Open issue status', 'OPEN')`);
+        await queryRunner.query(`INSERT INTO issue_statuses (name, description, "group") VALUES ('In Progress', 'In progress issue status', 'IN_PROGRESS')`);
+        await queryRunner.query(`INSERT INTO issue_statuses (name, description, "group") VALUES ('Closed', 'Closed issue status', 'CLOSED')`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
