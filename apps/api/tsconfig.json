@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
 
-    "outDir": "./dist",
+    "outDir": "./build",
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "skipLibCheck": true,
