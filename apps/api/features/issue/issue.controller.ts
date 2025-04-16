@@ -1,4 +1,4 @@
-import { CreateIssueRequest, CreateIssueStatusRequest } from "api-spec/src/issue.types";
+import { CreateIssueRequest, CreateIssueStatusRequest } from "@tue/api-spec/src/issue.types";
 import { Issue, IssueStatus, IssueStatusGroup } from "./issue.models";
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
 import { createIssue, createStatus, getIssues, getIssuesByStatusGroup, getStatuses } from "./issue.service";
