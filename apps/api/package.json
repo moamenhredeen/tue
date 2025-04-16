@@ -6,21 +6,24 @@
   "scripts": {
     "dev": "nodemon --exec ts-node main.ts"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.7.1",
   "dependencies": {
     "@fastify/autoload": "^6.3.0",
     "@fastify/cors": "^11.0.1",
+    "@tue/api-spec": "workspace:^",
+    "@tue/utils": "workspace:^",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.0",
+    "pg": "^8.14.1",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
-    "api-spec": "workspace:*",
-    "fastify": "^5.3.0",
-    "mysql2": "^3.14.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "typeorm": "^0.3.22",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
 }
