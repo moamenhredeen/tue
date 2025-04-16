@@ -6,10 +6,14 @@ import fastifyCors from "@fastify/cors";
 import path from "path";
 
 async function main() {
+    
+    // setup database
     await AppDataSource.initialize()
-    await AppDataSource.runMigrations()
+    await AppDataSource.runMigrations({
+        transaction: "all"
+    })
 
-
+    // setup fastify
     const app = fastify({
         logger: true
     });
@@ -24,6 +28,7 @@ async function main() {
         }
     });
 
+    // start server
     app.listen({ port: 3000 }, (err, address) => {
         if (err) {
             app.log.error(err);
