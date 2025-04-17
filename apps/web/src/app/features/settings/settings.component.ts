@@ -16,7 +16,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatLabel
+    MatLabel,
   ],
 })
 export class SettingsComponent {
