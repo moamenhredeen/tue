@@ -1,5 +1,1 @@
-<script lang="ts">
-	import SidebarPage from "$lib/components/sidebar-page.svelte";
-</script>
-
-<SidebarPage />
+<h1>Home Page</h1>
