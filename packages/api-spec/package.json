@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "API spec",
   "packageManager": "pnpm@10.7.1",
-  "main": "build/index.js",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf build",
-    "build": "tsc --incremental",
-    "start:dev": "tsc -w --incremental"
+    "build": "tsc --build --clean && tsc"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
-    "typescript": "^5.8.3"
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
   }
 }
