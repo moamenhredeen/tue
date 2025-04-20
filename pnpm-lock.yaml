@@ -4,6 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/node':
+      specifier: ^22.14.1
+      version: 22.14.1
+    typescript:
+      specifier: ^5.8.3
+      version: 5.8.3
+
 importers:
 
   .: {}
@@ -211,19 +220,19 @@ importers:
   packages/api-spec:
     devDependencies:
       '@types/node':
-        specifier: ^22.14.1
+        specifier: 'catalog:'
         version: 22.14.1
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/utils:
     devDependencies:
       '@types/node':
-        specifier: ^22.14.1
+        specifier: 'catalog:'
         version: 22.14.1
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
 packages:
