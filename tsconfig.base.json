@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        
+        /* strict type checking */
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "resolveJsonModule": true,
+
+        /* experimental */
+        "emitDecoratorMetadata": false,
+        "experimentalDecorators": true
+    }
+}
