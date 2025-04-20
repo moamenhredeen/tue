@@ -4,3 +4,4 @@ packages:
 
 catalog:
   typescript: ^5.8.3
+  "@types/node": ^22.14.1
