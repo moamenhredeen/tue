@@ -15,6 +15,7 @@ export type AppConfig = {
      * Database configuration
      */
     database: {
+        url: string;
         host: string;
         port: number;
         user: string;
@@ -28,6 +29,7 @@ config();
 export const appConfig: AppConfig = {
     port: parseInt(process.env.PORT) ?? 3000,
     database: {
+        url: getEnvVar("DATABASE_URL"),
         host: getEnvVar("DATABASE_HOST"),
         port: parseInt(getEnvVar("DATABASE_PORT")),
         user: getEnvVar("DATABASE_USER"),
