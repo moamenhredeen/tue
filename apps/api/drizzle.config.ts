@@ -1,6 +1,6 @@
-import 'dotenv/config';
-import { defineConfig } from 'drizzle-kit';
-import { getEnvVar } from '@tue/utils';
+import 'dotenv/config'
+import { defineConfig } from 'drizzle-kit'
+import { getEnvVar } from '@utils'
 
 export default defineConfig({
 	out: './src/database/migrations',
@@ -9,4 +9,4 @@ export default defineConfig({
 	dbCredentials: {
 		url: getEnvVar('DATABASE_URL'),
 	},
-});
+})
