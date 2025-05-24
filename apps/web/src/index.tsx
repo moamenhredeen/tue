@@ -10,31 +10,15 @@ import './index.css';
 const routes: RouteDefinition[] = [
 	{
 		path: "/",
-		info: {
-			name: "Home",
-		},
-		component: lazy(() => import('./pages/Home'))
+		component: lazy(() => import('./pages/Actionable'))
 	},
 	{
-		path: "/about",
-		info: {
-			name: "About",
-		},
-		component: lazy(() => import('./pages/About'))
+		path: "/calendar",
+		component: lazy(() => import('./pages/Calendar'))
 	},
 	{
-		path: "/settings",
-		info: {
-			name: "Settings",
-		},
-		component: lazy(() => import('./pages/Settings'))
-	},
-	{
-		path: "/profile",
-		info: {
-			name: "Profile",
-		},
-		component: lazy(() => import('./pages/Profile'))
+		path: "/inbox",
+		component: lazy(() => import('./pages/Inbox'))
 	},
 ]
 

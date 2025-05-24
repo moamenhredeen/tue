@@ -3,7 +3,7 @@ import { createSignal, Match, Switch } from 'solid-js'
 import TabBar from './TabBar'
 import TitleBar from './TitleBar'
 
-export default function Layout(props: ParentProps): JSX.Element {
+export default function Layout(props: ParentProps<{title: string}>): JSX.Element {
 
 	const [isMobile, setIsMobile] = createSignal(false);
 
@@ -19,20 +19,16 @@ export default function Layout(props: ParentProps): JSX.Element {
 
 	return (
 		<div class="min-h-screen flex flex-col">
-			<TitleBar />
-			<Switch>
-				<Match when={isMobile()}>
-					<h1>Is Mobile</h1>
-				</Match>
-				<Match when={!isMobile()}>
-					<h1>Is not Mobile</h1>
-				</Match>
-			</Switch>
-			<main class="flex-1">
+			<header class="fixed top-0 w-full bg-white z-10">
+				<TitleBar title={props.title} />
+			</header>
+			<main class="absolute top-32 h-full w-full">
 				{props.children}
 			</main>
 			<Show when={isMobile()}>
-				<TabBar />
+				<footer class="fixed bottom-0 w-full">
+					<TabBar  />
+				</footer>
 			</Show>
 		</div>
 	)
