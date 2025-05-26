@@ -1,7 +1,6 @@
 import { appDataSource, users } from '@database'
 
 export type UserFilter = {
-	username: string,
 	email: string
 }
 
@@ -13,7 +12,7 @@ export type GetUserResponse = {
 }
 
 
-export async function getUsers(filter: UserFilter): Promise<GetUserResponse[]> {
+export async function getUsers(filter?: UserFilter): Promise<GetUserResponse[]> {
 	const result = await appDataSource
 		.select()
 		.from(users)
