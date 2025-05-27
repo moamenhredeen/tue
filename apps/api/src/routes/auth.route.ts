@@ -1,44 +1,26 @@
-import { createUser, CreateUserRequest } from '@services/user/create.user.js'
-import fastify, { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
+import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from 'fastify'
+import { LoginRequest, LoginRequestSchema, RegisterRequest, RegisterRequestSchema } from '@tue/api-spec'
 
 export async function authRoute(app: FastifyInstance, options: FastifyPluginOptions) {
 
-	app.post('/register', {
-		schema: {
-			body: {
-				type: 'object',
-				properties: {
-					email: {
-						type: 'string' 
-					},
-					password: {
-						type: 'string'
-					}
-				}
-			}
-		}
-	}, async function registerHandler(req: FastifyRequest, res: FastifyReply) {
-		const createUserRequest = req.body as CreateUserRequest
-		const createUserResponse = await createUser(createUserRequest);
-		const token = app.jwt.sign({ createUserResponse })
-		return {token}
-	})
+	app.post(
+		'/register',
+		{
+			schema: {
+				body: RegisterRequestSchema,
+			},
+		},
+		async function registerHandler(req: FastifyRequest<{ Body: RegisterRequest }>, res: FastifyReply) {
+			return { message: 'successfully', payload: req.body }
+		})
 
-	app.post('/login', {
-		schema: {
-			body: {
-				type: 'object',
-				properties: {
-					email: {
-						type: 'string' 
-					},
-					password: {
-						type: 'string'
-					}
-				}
-			}
-		}
-	}, async function loginHandler(req: any, res: FastifyReply) {
-		// login
-	})
+	app.post(
+		'/login',
+		{
+			schema: {
+				body: LoginRequestSchema,
+			},
+		}, async function loginHandler(req: FastifyRequest<{ Body: LoginRequest }>, res: FastifyReply) {
+			return { message: 'successfully', payload: req.body }
+		})
 }

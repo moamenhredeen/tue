@@ -3,7 +3,7 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 
 
 export async function errorHandlerPlugin(err: FastifyError, req: FastifyRequest, res: FastifyReply) {
-	return {
-		message: err
+	if (err.validation) {
+		res.status(422).send(err.validation)
 	}
 }

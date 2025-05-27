@@ -6,8 +6,6 @@ import { pino } from 'pino'
 import { appConfig } from './config.js'
 import { errorHandlerPlugin, notFoundHandlerPlugin } from '@plugins'
 import { authRoute, taskRoute } from '@routes'
-import { jwtHook } from './plugins/jwt.hook.js'
-
 
 
 // ----------------- initialize app -----------------
@@ -18,8 +16,6 @@ const app = fastify({
 		},
 	}),
 })
-
-
 
 
 // ----------------- plugins -----------------
@@ -41,11 +37,9 @@ app.register(authRoute, { prefix: 'auth' })
 app.register(taskRoute, { prefix: 'task' })
 
 
-
 // ----------------- error handling -----------------
 app.setNotFoundHandler(notFoundHandlerPlugin)
 app.setErrorHandler(errorHandlerPlugin)
-
 
 
 // ----------------- start server -----------------
