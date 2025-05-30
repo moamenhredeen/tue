@@ -1,14 +1,31 @@
 <script lang="ts">
 	import AppSidebar from '$lib/components/app-sidebar.svelte'
-	import { Provider, Trigger } from '$lib/components/ui/sidebar/index.js'
+	import * as Sidebar from '$lib/components/ui/sidebar/index.js'
+	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js'
 
 	let { children } = $props()
 </script>
 
-<Provider>
+<Sidebar.SidebarProvider>
 	<AppSidebar />
-	<main class="w-full h-full p-4">
-		<Trigger />
-		{@render children?.()}
-	</main>
-</Provider>
+	<Sidebar.Inset>
+		<header class="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+			<Sidebar.Trigger class="-ml-1" />
+			<Sidebar.Separator orientation="vertical" class="mr-2 data-[orientation=vertical]:h-4" />
+			<Breadcrumb.Root>
+				<Breadcrumb.List>
+					<Breadcrumb.Item class="hidden md:block">
+						<Breadcrumb.Link href="#">Building Your Application</Breadcrumb.Link>
+					</Breadcrumb.Item>
+					<Breadcrumb.Separator class="hidden md:block" />
+					<Breadcrumb.Item>
+						<Breadcrumb.Page>Data Fetching</Breadcrumb.Page>
+					</Breadcrumb.Item>
+				</Breadcrumb.List>
+			</Breadcrumb.Root>
+		</header>
+		<main class="p-4 h-full w-full">
+			{@render children()}
+		</main>
+	</Sidebar.Inset>
+</Sidebar.SidebarProvider>
