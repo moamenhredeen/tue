@@ -3,7 +3,19 @@
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js'
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js'
 
+	import { page } from '$app/state'
+
 	let { children } = $props()
+	let breadcrumbItems: { name: string, url: string }[] = $derived.by(() => {
+		const segments = page.url.pathname.split('/').splice(1)
+		let total = ''
+		const items = []
+		for (const segment of segments) {
+			total += `/${segment}`
+			items.push({ name: segment, url: total })
+		}
+		return items
+	})
 </script>
 
 <Sidebar.SidebarProvider>
@@ -14,13 +26,14 @@
 			<Sidebar.Separator orientation="vertical" class="mr-2 data-[orientation=vertical]:h-4" />
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
-					<Breadcrumb.Item class="hidden md:block">
-						<Breadcrumb.Link href="#">Building Your Application</Breadcrumb.Link>
-					</Breadcrumb.Item>
-					<Breadcrumb.Separator class="hidden md:block" />
-					<Breadcrumb.Item>
-						<Breadcrumb.Page>Data Fetching</Breadcrumb.Page>
-					</Breadcrumb.Item>
+					{#each breadcrumbItems as segment, index (segment)}
+						{#if index > 0}
+							<Breadcrumb.Separator class="hidden md:block" />
+						{/if}
+						<Breadcrumb.Item class="hidden md:block">
+							<Breadcrumb.Link href={segment.url}>{segment.name}</Breadcrumb.Link>
+						</Breadcrumb.Item>
+					{/each}
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 		</header>
