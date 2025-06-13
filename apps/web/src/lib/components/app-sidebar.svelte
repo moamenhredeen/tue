@@ -32,11 +32,6 @@
 			icon: InboxIcon,
 		},
 		{
-			title: 'Today',
-			url: '/app/today',
-			icon: Calendar1Icon,
-		},
-		{
 			title: 'Upcoming',
 			url: '/app/upcoming',
 			icon: CalendarDaysIcon,
@@ -133,7 +128,7 @@
 				</Sidebar.MenuButton>
 			</Sidebar.MenuItem>
 			
-			<Sidebar.MenuItem>
+			<!-- <Sidebar.MenuItem>
 				<DropdownMenu.Root>
 				  <DropdownMenu.Trigger>
 					{#snippet child({ props })}
@@ -198,7 +193,7 @@
 					</DropdownMenu.Item>
 				  </DropdownMenu.Content>
 				</DropdownMenu.Root>
-			  </Sidebar.MenuItem>
+			  </Sidebar.MenuItem> -->
 		</Sidebar.Menu>
 	</Sidebar.Footer>
 </Sidebar.Root>
