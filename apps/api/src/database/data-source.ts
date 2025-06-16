@@ -1,7 +1,7 @@
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres'
 import { appConfig } from '../config.js'
 
-export const appDataSource: NodePgDatabase = drizzle({
+export const db: NodePgDatabase = drizzle({
 	connection: {
 		host: appConfig.database.host,
 		port: appConfig.database.port,
