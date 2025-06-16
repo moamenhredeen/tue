@@ -4,7 +4,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/app.ts"
+    "dev": "tsx watch src/app.ts",
+    "drizzle:push": "NODE_OPTIONS='--import tsx' drizzle-kit push --config=drizzle.config.ts",
+    "drizzle:pull": "NODE_OPTIONS='--import tsx' drizzle-kit pull --config=drizzle.config.ts"
   },
   "license": "ISC",
   "packageManager": "pnpm@10.7.1",
@@ -15,18 +17,18 @@
     "@fastify/jwt": "^9.1.0",
     "@fastify/type-provider-typebox": "^5.1.0",
     "@tue/api-spec": "workspace:*",
-    "drizzle-orm": "^0.43.1",
+    "drizzle-orm": "^0.44.2",
     "fastify": "^5.3.3",
-    "pg": "^8.14.1",
+    "pg": "^8.16.0",
     "pino": "^9.7.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
-    "@types/pg": "^8.11.13",
+    "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.1",
     "nodemon": "^3.1.9",
     "pino-pretty": "^13.0.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   }
 }
