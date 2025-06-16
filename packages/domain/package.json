@@ -1,7 +1,0 @@
-{
-  "name": "@tue/domain",
-  "description": "the domain layer that holds the bussines logic",
-  "version": "1.0.0",
-  "main": "index.js",
-  "packageManager": "pnpm@10.7.1"
-}
