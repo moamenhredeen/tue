@@ -41,15 +41,24 @@ const props = defineProps<{
 								class="flex flex-col items-center gap-1 text-center"
 							>
 								<h1 class="text-2xl font-bold">
-									Login to your account
+									Create your account
 								</h1>
 								<p
 									class="text-muted-foreground text-sm text-balance"
 								>
-									Enter your email below to login to your
+									Fill in the form below to create your
 									account
 								</p>
 							</div>
+							<Field>
+								<FieldLabel for="name"> Full Name </FieldLabel>
+								<Input
+									id="name"
+									type="text"
+									placeholder="John Doe"
+									required
+								/>
+							</Field>
 							<Field>
 								<FieldLabel for="email"> Email </FieldLabel>
 								<Input
@@ -58,27 +67,40 @@ const props = defineProps<{
 									placeholder="m@example.com"
 									required
 								/>
+								<FieldDescription>
+									We'll use this to contact you. We will not
+									share your email with anyone else.
+								</FieldDescription>
 							</Field>
 							<Field>
-								<div class="flex items-center">
-									<FieldLabel for="password">
-										Password
-									</FieldLabel>
-									<a
-										href="#"
-										class="ml-auto text-sm underline-offset-4 hover:underline"
-									>
-										Forgot your password?
-									</a>
-								</div>
+								<FieldLabel for="password">
+									Password
+								</FieldLabel>
 								<Input
 									id="password"
 									type="password"
 									required
 								/>
+								<FieldDescription>
+									Must be at least 8 characters long.
+								</FieldDescription>
 							</Field>
 							<Field>
-								<Button type="submit"> Login </Button>
+								<FieldLabel for="confirm-password">
+									Confirm Password
+								</FieldLabel>
+								<Input
+									id="confirm-password"
+									type="password"
+									required
+								/>
+								<FieldDescription
+									>Please confirm your
+									password.</FieldDescription
+								>
+							</Field>
+							<Field>
+								<Button type="submit"> Create Account </Button>
 							</Field>
 							<FieldSeparator>Or continue with</FieldSeparator>
 							<Field>
@@ -95,13 +117,11 @@ const props = defineProps<{
 											fill="currentColor"
 										/>
 									</svg>
-									Login with GitHub
+									Sign up with GitHub
 								</Button>
-								<FieldDescription class="text-center">
-									Don't have an account?
-									<RouterLink to="/signup">
-										Sign up
-									</RouterLink>
+								<FieldDescription class="px-6 text-center">
+									Already have an account?
+									<RouterLink to="/login">Sign in</RouterLink>
 								</FieldDescription>
 							</Field>
 						</FieldGroup>
